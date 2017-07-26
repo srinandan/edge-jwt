@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PopulateCache async="false" continueOnError="false" enabled="true" name="Populate-Public-Key">
+    <DisplayName>Populate Public Key</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment>publicKeys</KeyFragment>
+    </CacheKey>
+    <CacheResource>publickey</CacheResource>
+    <Scope>Exclusive</Scope>
+    <Source>publicKeyResponse.content</Source>
+</PopulateCache>

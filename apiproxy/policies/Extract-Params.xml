@@ -9,11 +9,14 @@
     <Header name="Host">
         <Pattern ignoreCase="true">{proxyHost}</Pattern>
     </Header>
+    <Header name="Authorization">
+        <Pattern ignoreCase="true">Bearer {assertion}</Pattern>
+    </Header>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
-    <JSONPayload>
+    <!--<JSONPayload>
         <Variable name="assertion" type="string">
             <JSONPath>$.assertion</JSONPath>
         </Variable>
-    </JSONPayload>
+    </JSONPayload> -->
     <Source clearPayload="false">request</Source>
 </ExtractVariables>

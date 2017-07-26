@@ -3,7 +3,7 @@
     <Description/>
     <FaultRules/>
     <Flows>
-        <Flow name="Obtain Access Token">
+        <Flow name="Verify JWT Token">
             <Description/>
             <Request/>
             <Response/>

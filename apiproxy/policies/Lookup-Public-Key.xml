@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LookupCache async="false" continueOnError="false" enabled="true" name="Lookup-Public-Key">
+    <DisplayName>Lookup Public Key</DisplayName>
+    <Properties/>
+    <CacheKey>
+        <KeyFragment>publicKeys</KeyFragment>
+    </CacheKey>
+    <CacheResource>publickey</CacheResource>
+    <Scope>Exclusive</Scope>
+    <AssignTo>publicKey</AssignTo>
+</LookupCache>

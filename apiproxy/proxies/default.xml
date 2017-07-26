@@ -3,7 +3,7 @@
     <Description/>
     <FaultRules/>
     <Flows>
-        <Flow name="Obtain Access Token">
+        <Flow name="Verify JWT Token">
             <Description/>
             <Request>
                 <Step>
@@ -11,15 +11,21 @@
                     <Name>Extract-Params</Name>
                 </Step>
                 <Step>
+                    <Name>Lookup-Public-Key</Name>
+                </Step>
+                <Step>
                     <Name>Get-Public-Key</Name>
+                    <Condition>lookupcache.Lookup-Public-Key.cachehit = false</Condition>
+                </Step>
+                <Step>
+                    <Name>Populate-Public-Key</Name>
+                    <Condition>lookupcache.Lookup-Public-Key.cachehit = false</Condition>
+                </Step>
+                <Step>
+                    <Name>Raise-Fault-1</Name>
                 </Step>
             </Request>
-            <Response>
-                <Step>
-                    <FaultRules/>
-                    <Name>Set-Response</Name>
-                </Step>
-            </Response>
+            <Response/>
             <Condition>(proxy.pathsuffix MatchesPath "/token") and (request.verb = "POST")</Condition>
         </Flow>
         <Flow name="Unknow Request">

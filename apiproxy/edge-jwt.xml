@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <APIProxy revision="1" name="edge-jwt">
-    <Basepaths>/edge-jwt</Basepaths>
-    <Basepaths>/edge-jwt</Basepaths>
+    <Basepaths>/edgemicro-auth</Basepaths>
+    <Basepaths>/edgemicro-auth</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1495744632248</CreatedAt>
-    <CreatedBy>srinandans@google.com</CreatedBy>
+    <CreatedAt>1499727904792</CreatedAt>
+    <CreatedBy>nickadmin1@gamb.com</CreatedBy>
     <DisplayName>edge-jwt</DisplayName>
-    <LastModifiedAt>1495744647638</LastModifiedAt>
-    <LastModifiedBy>srinandans@google.com</LastModifiedBy>
+    <LastModifiedAt>1500667045385</LastModifiedAt>
+    <LastModifiedBy>nickadmin1@gamb.com</LastModifiedBy>
     <Policies>
         <Policy>Extract-Params</Policy>
         <Policy>Get-Public-Key</Policy>
+        <Policy>Lookup-Public-Key</Policy>
+        <Policy>Populate-Public-Key</Policy>
+        <Policy>Raise-Fault-1</Policy>
         <Policy>Raise-Fault-Unknown-Request</Policy>
-        <Policy>Set-Response</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
@@ -28,7 +30,6 @@
         <Resource>node://node_modules_jws.zip</Resource>
         <Resource>node://node_modules_safe-buffer.zip</Resource>
         <Resource>node://package.json</Resource>
-        <Resource>jsc://set-response.js</Resource>
     </Resources>
     <Spec></Spec>
     <TargetServers/>
