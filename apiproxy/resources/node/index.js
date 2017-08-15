@@ -68,23 +68,36 @@ function getPublicKey(publickeys, kid) {
                  });
                  response.end(JSON.stringify(err));                 
              }
-             var publickeys = publicKeyResponseObj.keys;
-             var publicKey = getPublicKey(publickeys, decode.header.kid);
-             if (!publicKey) {
-                 response.writeHead(500, {
-                     "Content-Type": "application/json"
-                 });
-                 response.end(JSON.stringify(err));                 
+             //set decoded payload in the variable
+             apigee.setVariable(request, 'jwt.payload', decode.payload);
+             
+             var publicKey= null;
+             var pem = null;
+             if (publicKeyResponseObj.keys) {
+               //handle googleapis format
+                 var publickeys = publicKeyResponseObj.keys;
+                 publicKey = getPublicKey(publickeys, decode.header.kid);
+                 if (!publicKey) {
+                     response.writeHead(500, {
+                         "Content-Type": "application/json"
+                     });
+                     response.end(JSON.stringify(err));                 
+                 }               
+             } else {
+                 pem =  publicKeyResponseObj[decode.header.kid];
              }
-             var key = rs.KEYUTIL.getKey(publicKey);
-             var pem = rs.KEYUTIL.getPEM(key);
+             
+             if (!pem) {
+               var key = rs.KEYUTIL.getKey(publicKey);
+               pem = rs.KEYUTIL.getPEM(key);
+             }
              //var result = rs.jws.JWS.verify(assertion, publicKey, ['RS256']);//
              var result = jws.verify(assertion, "RS256", pem); 
              if (result) {
               response.writeHead(200, {
                   "Content-Type": "application/json"
               });
-              response.end(JSON.stringify(success));                          
+              response.end(JSON.stringify(decode.payload));                          
              } else {
               response.writeHead(403, {
                   "Content-Type": "application/json"
